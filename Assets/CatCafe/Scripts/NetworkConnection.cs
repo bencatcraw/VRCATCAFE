@@ -7,12 +7,17 @@ using Unity.Services.Core;
 using Unity.Services.Relay;
 using Unity.Services.Relay.Models;
 using Unity.Netcode.Transports.UTP;
+using TMPro;
 
-public class NetworkButtons : MonoBehaviour
+public class NetworkConnection : MonoBehaviour
 {
     public string joinCode;
     public int maxConnection = 2;
     public UnityTransport transport;
+    [SerializeField]
+    public TextMeshProUGUI codeText;
+    [SerializeField]
+    public TMP_InputField codeInput;
 
     private async void Awake()
     {
@@ -24,7 +29,7 @@ public class NetworkButtons : MonoBehaviour
         Allocation allocation = await RelayService.Instance.CreateAllocationAsync(maxConnection);
         string newJoinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
 
-        Debug.Log(newJoinCode);
+        codeText.SetText(newJoinCode);
 
         transport.SetHostRelayData(allocation.RelayServer.IpV4, (ushort)allocation.RelayServer.Port,
             allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData);
@@ -34,6 +39,7 @@ public class NetworkButtons : MonoBehaviour
 
     public async void Client()
     {
+        joinCode = codeInput.text.ToUpper();
         JoinAllocation allocation = await RelayService.Instance.JoinAllocationAsync(joinCode);
 
         transport.SetClientRelayData(allocation.RelayServer.IpV4, (ushort)allocation.RelayServer.Port,
