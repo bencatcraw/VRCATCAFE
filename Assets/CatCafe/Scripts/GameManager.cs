@@ -5,7 +5,7 @@ using Unity.Netcode;
 
 public class GameManager : NetworkBehaviour
 {
-    public static GameManager Instance;
+    public static GameManager Instance { get; private set; }
     public NetworkVariable<int> playerCount = new();
     public GameObject codeCanvas;
 
