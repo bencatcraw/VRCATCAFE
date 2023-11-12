@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using Unity.Netcode;
 
@@ -8,6 +9,8 @@ public class GameManager : NetworkBehaviour
     public static GameManager Instance { get; private set; }
     public NetworkVariable<int> playerCount = new();
     public GameObject codeCanvas;
+
+    public event EventHandler OnStateChanged;
 
     private State state;
     private float waitingToStartTimer = 1f;
@@ -36,6 +39,7 @@ public class GameManager : NetworkBehaviour
                 if (waitingToStartTimer < 0f)
                 {
                     state = State.CountdownToStart;
+                    OnStateChanged?.Invoke(this, EventArgs.Empty);
                 }
                 break;
             case State.CountdownToStart:
@@ -56,6 +60,20 @@ public class GameManager : NetworkBehaviour
                 break;
         }
         Debug.Log(state);
+    }
+    public bool IsGamePlaying()
+    {
+        return state == State.GamePlaying;
+    }
+
+    public bool IsCountdownToStartActive()
+    {
+        return state == State.CountdownToStart;
+    }
+
+    public float GetCountdownToStartTimer()
+    {
+        return countdownToStartTimer;
     }
     public override void OnNetworkSpawn()
     {
