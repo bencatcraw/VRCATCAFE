@@ -9,13 +9,13 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 55daccc09a3b69647bbab145b54a3ab3
   - enabled: 1
-    path: Assets/CatCafe/Scenes/MainMenu.unity
+    path: Assets/_CatCafe/Scenes/MainMenu.unity
     guid: 75e5d2d1276578c478f17b1ea02a7ba7
   - enabled: 1
-    path: Assets/CatCafe/Scenes/Mechanic Testing.unity
+    path: Assets/_CatCafe/Scenes/Mechanic Testing.unity
     guid: 2dc4b18b761b9ff47ab7e4f1ec955d7e
   - enabled: 1
-    path: Assets/CatCafe/Scenes/Multiplayer Testing.unity
+    path: Assets/_CatCafe/Scenes/Multiplayer Testing.unity
     guid: 71f4b21cfde35b24d88b4c4ab910143d
   - enabled: 1
     path: Assets/Scenes/BasicScene.unity
