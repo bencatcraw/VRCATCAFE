@@ -3560,7 +3560,9 @@ PrefabInstance:
       propertyPath: m_DisableVisualsWhenBlockedInGroup
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3127728407712097239, guid: 895f6f3c2d334633b5800312285058d2, type: 3}
+    - {fileID: 3127728407712097234, guid: 895f6f3c2d334633b5800312285058d2, type: 3}
     m_RemovedGameObjects:
     - {fileID: 8063056433196656523, guid: 895f6f3c2d334633b5800312285058d2, type: 3}
     - {fileID: 5628056358492308370, guid: 895f6f3c2d334633b5800312285058d2, type: 3}
