@@ -18,4 +18,8 @@ public class KitchenObject : MonoBehaviour
 
         return kitchenObject;
     }
+    public void SetKitchenObjectSO(KitchenObjectSO objectSO)
+    {
+        kitchenObjectSO = objectSO;
+    }
 }

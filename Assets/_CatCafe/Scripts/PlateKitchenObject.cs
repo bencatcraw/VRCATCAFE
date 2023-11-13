@@ -42,6 +42,16 @@ public class PlateKitchenObject : KitchenObject
             }
 
         }
+        if (collision.gameObject.tag == "Spread")
+        {
+            if (TryAddIngredient(collision.gameObject.GetComponent<KitchenObject>().GetKitchenObjectSO()))
+            {
+                collision.gameObject.GetComponent<Knife>().SetKitchenObjectSO(collision.gameObject.GetComponent<Knife>().defaultKitchenObjectSO);
+                collision.gameObject.GetComponentInChildren<KnifeCompleteVisual>().ClearSpread();
+                collision.gameObject.tag = "Untagged";
+            }
+
+        }
     }
 
     public List<KitchenObjectSO> GetKitchenObjectSOList()
