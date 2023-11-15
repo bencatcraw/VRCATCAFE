@@ -8,6 +8,7 @@ TagManager:
   - Ingredient
   - Plate
   - Spread
+  - Cup
   layers:
   - Default
   - TransparentFX

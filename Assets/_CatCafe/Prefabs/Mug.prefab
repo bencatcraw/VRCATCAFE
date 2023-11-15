@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 8080436500933380279}
   - component: {fileID: 3962308651030423215}
   - component: {fileID: 3914212747796530283}
+  - component: {fileID: 1343884994539667608}
   m_Layer: 0
   m_Name: Mug
-  m_TagString: Untagged
+  m_TagString: Cup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -231,6 +232,20 @@ MonoBehaviour:
   posTransitionDuration: 0.2
   rightHandPose: {fileID: 537458684244716343}
   leftHandPose: {fileID: 7683092103540277927}
+--- !u!114 &1343884994539667608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6607746367263072155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d3352a9702828b44a879ddeb50c1790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kitchenObjectSO: {fileID: 0}
+  defaultKitchenObject: {fileID: 0}
 --- !u!1 &8663171850817503974
 GameObject:
   m_ObjectHideFlags: 0
