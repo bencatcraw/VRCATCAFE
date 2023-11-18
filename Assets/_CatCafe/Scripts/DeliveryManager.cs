@@ -33,7 +33,7 @@ public class DeliveryManager : MonoBehaviour
         }
     }
 
-    public void DeliverRecipe(PlateKitchenObject plateKitchenObject)
+    public void DeliverPlate(PlateKitchenObject plateKitchenObject)
     {
         for(int i=0; i< waitingRecipeSOList.Count; i++)
         {
@@ -72,5 +72,36 @@ public class DeliveryManager : MonoBehaviour
         // no matches found
         // incorrect recipe
         Debug.Log("incorrect :(");
+    }
+
+    public void DeliverCup(CupKitchenObject cupKitchenObject)
+    {
+        for (int i = 0; i < waitingRecipeSOList.Count; i++)
+        {
+            RecipeSO waitingRecipeSO = waitingRecipeSOList[i];
+
+            bool cupContentsMatchesRecipe = false;
+                foreach (KitchenObjectSO recipeKitchenObjectSO in waitingRecipeSO.kitchenObjSOList)
+                {
+                        if (cupKitchenObject.GetKitchenObjectSO() == recipeKitchenObjectSO)
+                        {
+                            cupContentsMatchesRecipe = true;
+                            break;
+                        }
+                }
+                if (cupContentsMatchesRecipe)
+                {
+                    //player deliverd correct recipe
+                    Debug.Log("CORRECT " + i);
+                    waitingRecipeSOList.RemoveAt(i);
+                    return;
+                }
+            
+
+        }
+
+        // no matches found
+        // incorrect recipe
+        Debug.Log("INCORRECT :(");
     }
 }

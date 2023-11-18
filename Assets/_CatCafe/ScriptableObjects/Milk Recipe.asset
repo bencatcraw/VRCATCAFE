@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db9b526c42e9b9f43b1394f9d6fa9b89, type: 3}
-  m_Name: Toast Recipe
+  m_Name: Milk Recipe
   m_EditorClassIdentifier: 
   kitchenObjSOList:
-  - {fileID: 11400000, guid: 7f78d83b738b6234aaf66ddda70a043d, type: 2}
-  recipeName: Toast Recipe
+  - {fileID: 11400000, guid: c585191b719466f47a0233918a12326b, type: 2}
+  recipeName: Milk Recipe

@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaaebf960fa7c434282fec2fc0258204, type: 3}
-  m_Name: _RecipeList
+  m_Script: {fileID: 11500000, guid: db9b526c42e9b9f43b1394f9d6fa9b89, type: 3}
+  m_Name: Jam Toast Recipe
   m_EditorClassIdentifier: 
-  recipeSOList:
-  - {fileID: 11400000, guid: 01b9244c4427b7240ab1c745d8e41a5d, type: 2}
-  - {fileID: 11400000, guid: a55bdbb693d5f3c47b8ff54384023277, type: 2}
+  kitchenObjSOList:
+  - {fileID: 11400000, guid: 7f78d83b738b6234aaf66ddda70a043d, type: 2}
+  - {fileID: 11400000, guid: d5c63cf10ad95144eba51dcfd032fb9d, type: 2}
+  recipeName: Jam Toast
