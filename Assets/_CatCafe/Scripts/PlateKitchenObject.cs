@@ -32,6 +32,7 @@ public class PlateKitchenObject : KitchenObject
         }
         
     }
+    
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "Ingredient")
