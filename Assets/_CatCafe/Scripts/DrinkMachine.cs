@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class DrinkMachine : MonoBehaviour
+public class DrinkMachine : NetworkBehaviour
 {
     [SerializeField] private KitchenObjectSO kitchenObjectSO;
     [SerializeField] private Collider col;
@@ -19,9 +20,9 @@ public class DrinkMachine : MonoBehaviour
     {
         if(other.GetComponentInParent<CupKitchenObject>().GetKitchenObjectSO() == other.GetComponentInParent<CupKitchenObject>().defaultKitchenObjectSO)
         {
-            other.GetComponentInParent<CupKitchenObject>().SetKitchenObjectSO(kitchenObjectSO);
-            other.gameObject.GetComponentInChildren<MugCompleteVisual>().DrinkVisual(kitchenObjectSO);
-            
+            other.GetComponentInParent<CupKitchenObject>().AddIngredienteServerRpc(CatCafeMultiplayer.Instance.GetKitchenObjectSOIndex(kitchenObjectSO));
         }
     }
+
+    
 }

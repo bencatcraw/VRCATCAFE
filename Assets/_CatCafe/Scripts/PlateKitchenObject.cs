@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public class PlateKitchenObject : KitchenObject
@@ -22,17 +23,29 @@ public class PlateKitchenObject : KitchenObject
         }
         else
         {
-            kitchenObjectSOList.Add(kitchenObjectSO);
-
-            OnIngredientAdded?.Invoke(this, new OnIngredientAddedEventArgs
-            {
-                kitchenObjectSO = kitchenObjectSO
-            });
+            AddIngredienteServerRpc(CatCafeMultiplayer.Instance.GetKitchenObjectSOIndex(kitchenObjectSO));
             return true;
         }
         
     }
-    
+    [ServerRpc(RequireOwnership = false)]
+    private void AddIngredienteServerRpc(int kitchenObjectSOIndex)
+    {
+        AddIngredienteClientRpc(kitchenObjectSOIndex);
+    }
+    [ClientRpc]
+    private void AddIngredienteClientRpc(int kitchenObjectSOIndex)
+    {
+        KitchenObjectSO kitchenObjectSO = CatCafeMultiplayer.Instance.GetKitchenObjectSOFromIndex(kitchenObjectSOIndex);
+
+        kitchenObjectSOList.Add(kitchenObjectSO);
+
+        OnIngredientAdded?.Invoke(this, new OnIngredientAddedEventArgs
+        {
+            kitchenObjectSO = kitchenObjectSO
+        });
+
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "Ingredient")
