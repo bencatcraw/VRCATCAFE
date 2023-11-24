@@ -1161,7 +1161,7 @@ GameObject:
   - component: {fileID: 7685444876881792703}
   - component: {fileID: 3451002140144423752}
   - component: {fileID: 2383273260627489676}
-  - component: {fileID: 5398367130268709323}
+  - component: {fileID: 8496910519236226019}
   m_Layer: 0
   m_Name: knife
   m_TagString: Untagged
@@ -1234,8 +1234,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5398367130268709323
-MeshCollider:
+--- !u!65 &8496910519236226019
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1252,10 +1252,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 6377963303702389171, guid: 3481bfb5371fed04a901ffe7dd7b869a, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 0.045509737, y: 0.0023270836, z: 0.006268934}
+  m_Center: {x: 0.0038043926, y: -0.00000077959595, z: 0.000051642637}
 --- !u!1 &4535825497355608488
 GameObject:
   m_ObjectHideFlags: 0

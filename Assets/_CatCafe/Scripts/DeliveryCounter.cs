@@ -26,4 +26,9 @@ public class DeliveryCounter : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
+
+    public void buttontest()
+    {
+        Debug.Log("Pressed");
+    }
 }
