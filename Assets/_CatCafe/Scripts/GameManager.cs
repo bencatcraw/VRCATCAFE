@@ -7,16 +7,14 @@ using Unity.Netcode;
 public class GameManager : NetworkBehaviour
 {
     public static GameManager Instance { get; private set; }
-    public NetworkVariable<int> playerCount = new();
-    public GameObject codeCanvas;
 
     public event EventHandler OnStateChanged;
 
-    private State state;
+    private NetworkVariable<State> state = new NetworkVariable<State>(State.WaitingToStart);
     private bool isLocalPlayerReady = false;
-    private float waitingToStartTimer = 1f;
-    private float countdownToStartTimer = 3f;
-    private float gamePlayingTimer = 10f;
+    private NetworkVariable<float> countdownToStartTimer = new NetworkVariable<float>(3f);
+    private NetworkVariable<float> gamePlayingTimer = new NetworkVariable<float>(0f);
+    private float gamePlayingTimerMax = 300f;
     private Dictionary<ulong, bool> playerReadyDictionary;
 
     private enum State
@@ -29,35 +27,33 @@ public class GameManager : NetworkBehaviour
     private void Awake()
     {
         Instance = this;
-        state = State.WaitingToStart;
 
         playerReadyDictionary = new Dictionary<ulong, bool>();
     }
 
+
     private void Update()
     {
-        switch (state)
+        if (!IsServer){
+            return;
+        }
+        switch (state.Value)
         {
             case State.WaitingToStart:
-                waitingToStartTimer -= Time.deltaTime;
-                if (waitingToStartTimer < 0f)
-                {
-                    state = State.CountdownToStart;
-                    OnStateChanged?.Invoke(this, EventArgs.Empty);
-                }
                 break;
             case State.CountdownToStart:
-                countdownToStartTimer -= Time.deltaTime;
-                if (countdownToStartTimer < 0f)
+                countdownToStartTimer.Value -= Time.deltaTime;
+                if (countdownToStartTimer.Value < 0f)
                 {
-                    state = State.GamePlaying;
+                    state.Value = State.GamePlaying;
+                    gamePlayingTimer.Value = gamePlayingTimerMax;
                 }
                 break;
             case State.GamePlaying:
-                gamePlayingTimer -= Time.deltaTime;
-                if (gamePlayingTimer < 0f)
+                gamePlayingTimer.Value -= Time.deltaTime;
+                if (gamePlayingTimer.Value < 0f)
                 {
-                    state = State.GameOver;
+                    state.Value = State.GameOver;
                 }
                 break;
             case State.GameOver:
@@ -75,17 +71,17 @@ public class GameManager : NetworkBehaviour
     }
     public bool IsGamePlaying()
     {
-        return state == State.GamePlaying;
+        return state.Value == State.GamePlaying;
     }
 
     public bool IsCountdownToStartActive()
     {
-        return state == State.CountdownToStart;
+        return state.Value == State.CountdownToStart;
     }
 
     public float GetCountdownToStartTimer()
     {
-        return countdownToStartTimer;
+        return countdownToStartTimer.Value;
     }
 
     [ServerRpc(RequireOwnership = false)]
@@ -102,34 +98,24 @@ public class GameManager : NetworkBehaviour
                 break;
             }
         }
+
+        if (allClientsReady)
+        {
+            state.Value = State.CountdownToStart;
+        }
         Debug.Log("allclientsready: " + allClientsReady);
     }
     public override void OnNetworkSpawn()
     {
-        if (IsHost)
-        {
-            NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnectedCallback;
-            NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnectCallback;
-        }
-    }
-
-    private void OnClientDisconnectCallback(ulong obj)
-    {
-        playerCount.Value--;
-        if(playerCount.Value < 2)
-        {
-            codeCanvas.SetActive(true);
-        }
         
+        state.OnValueChanged += State_OnValueChanged;
     }
 
-    private void OnClientConnectedCallback(ulong obj)
+    private void State_OnValueChanged(State previousValue, State newValue)
     {
-        playerCount.Value++;
-        if (playerCount.Value == 2)
-        {
-            codeCanvas.SetActive(false);
-        }
+        OnStateChanged?.Invoke(this, EventArgs.Empty);
     }
+
+    
 }
 
