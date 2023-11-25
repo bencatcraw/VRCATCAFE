@@ -19,7 +19,6 @@ namespace UnityEngine.XR.Content.Interaction
         [SerializeField]
         private GameObject grabToast;
         private float toastingTimer;
-        private float toastingTimerMax = 10f;
         private float filledSlots;
         private State state;
         public ToasterRecipeSO toastRecipeSO;

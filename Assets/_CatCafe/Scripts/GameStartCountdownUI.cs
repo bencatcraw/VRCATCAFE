@@ -35,11 +35,11 @@ public class GameStartCountdownUI : MonoBehaviour
 
     private void Hide()
     {
-        gameObject.SetActive(false);
+        countdownText.gameObject.SetActive(false);
     }
 
     private void Show()
     {
-        gameObject.SetActive(true);
+        countdownText.gameObject.SetActive(true);
     }
 }

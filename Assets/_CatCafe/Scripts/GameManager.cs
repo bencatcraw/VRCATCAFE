@@ -13,9 +13,11 @@ public class GameManager : NetworkBehaviour
     public event EventHandler OnStateChanged;
 
     private State state;
+    private bool isLocalPlayerReady = false;
     private float waitingToStartTimer = 1f;
     private float countdownToStartTimer = 3f;
     private float gamePlayingTimer = 10f;
+    private Dictionary<ulong, bool> playerReadyDictionary;
 
     private enum State
     {
@@ -28,6 +30,8 @@ public class GameManager : NetworkBehaviour
     {
         Instance = this;
         state = State.WaitingToStart;
+
+        playerReadyDictionary = new Dictionary<ulong, bool>();
     }
 
     private void Update()
@@ -59,7 +63,15 @@ public class GameManager : NetworkBehaviour
             case State.GameOver:
                 break;
         }
-        Debug.Log(state);
+    }
+    public void readyLocalPlayer()
+    {
+        isLocalPlayerReady = true;
+        SetPlayerReadyServerRpc();
+    }
+    public bool IsLocalPlayerReady()
+    {
+        return isLocalPlayerReady;
     }
     public bool IsGamePlaying()
     {
@@ -74,6 +86,23 @@ public class GameManager : NetworkBehaviour
     public float GetCountdownToStartTimer()
     {
         return countdownToStartTimer;
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void SetPlayerReadyServerRpc(ServerRpcParams serverRpcParams = default)
+    {
+        playerReadyDictionary[serverRpcParams.Receive.SenderClientId] = true;
+
+        bool allClientsReady = true;
+        foreach(ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
+        {
+            if(!playerReadyDictionary.ContainsKey(clientId) || !playerReadyDictionary[clientId])
+            {
+                allClientsReady = false;
+                break;
+            }
+        }
+        Debug.Log("allclientsready: " + allClientsReady);
     }
     public override void OnNetworkSpawn()
     {
