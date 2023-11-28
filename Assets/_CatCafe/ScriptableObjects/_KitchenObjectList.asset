@@ -15,6 +15,7 @@ MonoBehaviour:
   kitchenObjectSOList:
   - {fileID: 11400000, guid: 4c1ae4b15a323db49b09d0cab4cf5ade, type: 2}
   - {fileID: 11400000, guid: d5c63cf10ad95144eba51dcfd032fb9d, type: 2}
+  - {fileID: 11400000, guid: e144c1efa033d5f4d9d36e5895838562, type: 2}
   - {fileID: 11400000, guid: 8ff7df4dfe31ab74bb8e0667003f8349, type: 2}
   - {fileID: 11400000, guid: c585191b719466f47a0233918a12326b, type: 2}
   - {fileID: 11400000, guid: d23cb6e2dbb306a4fb2267ef85e030f5, type: 2}
