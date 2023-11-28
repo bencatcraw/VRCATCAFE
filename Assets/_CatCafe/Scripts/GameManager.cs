@@ -16,6 +16,9 @@ public class GameManager : NetworkBehaviour
     private NetworkVariable<float> gamePlayingTimer = new NetworkVariable<float>(0f);
     private float gamePlayingTimerMax = 300f;
     private Dictionary<ulong, bool> playerReadyDictionary;
+    [SerializeField] private GameObject movementObj;
+    [SerializeField] private Transform XROrigin;
+    [SerializeField] private Transform clientSpawn;
 
     private enum State
     {
@@ -47,6 +50,7 @@ public class GameManager : NetworkBehaviour
                 {
                     state.Value = State.GamePlaying;
                     gamePlayingTimer.Value = gamePlayingTimerMax;
+                    EnableMovementClientRpc();
                 }
                 break;
             case State.GamePlaying:
@@ -60,6 +64,17 @@ public class GameManager : NetworkBehaviour
                 break;
         }
     }
+
+    [ClientRpc]
+    private void EnableMovementClientRpc()
+    {
+        movementObj.SetActive(true);
+        if (!IsHost) {
+            XROrigin.position = clientSpawn.position;
+        }
+        
+    }
+
     public void readyLocalPlayer()
     {
         isLocalPlayerReady = true;
