@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kitchenObjSOList:
   - {fileID: 11400000, guid: c585191b719466f47a0233918a12326b, type: 2}
-  recipeName: Milk Recipe
+  recipeName: Cup of Milk
+  recipeSOImage: {fileID: -770175308, guid: 2b93e574fad002346a2ed629c3149190, type: 3}

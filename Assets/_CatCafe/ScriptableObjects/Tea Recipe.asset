@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kitchenObjSOList:
   - {fileID: 11400000, guid: 179fba8c384923348977e777f1f26dfc, type: 2}
-  recipeName: Tea Recipe
+  recipeName: Cup of Catnip Tea
+  recipeSOImage: {fileID: -1088141994, guid: 2b93e574fad002346a2ed629c3149190, type: 3}

@@ -8,6 +8,8 @@ public class DeliveryManager : NetworkBehaviour
     public static DeliveryManager Instance { get; private set; }
 
     [SerializeField] private RecipeListSO recipeListSO;
+    [SerializeField] private KitchenObjectSO note;
+    [SerializeField] private Transform noteSpawn;
     private List<RecipeSO> waitingRecipeSOList;
     private float spawnRecipeTimer = 4f;
     private float spawnRecipeTimerMax = 4f;
@@ -34,10 +36,19 @@ public class DeliveryManager : NetworkBehaviour
             {
                 int waitingRecipeSOIndex = UnityEngine.Random.Range(0, recipeListSO.recipeSOList.Count);
 
-                SpawnNewWaitingRecipeClientRpc(waitingRecipeSOIndex);
-
+                SpawnNewWaitingRecipeServerRpc(waitingRecipeSOIndex);
             }
         }
+    }
+    [ServerRpc]
+    private void SpawnNewWaitingRecipeServerRpc(int waitingRecipeSOIndex)
+    {
+        Transform kitchenObjectTransform = Instantiate(note.prefab, noteSpawn);
+
+        NetworkObject kitchenObjectNetworkObject = kitchenObjectTransform.GetComponent<NetworkObject>();
+        kitchenObjectNetworkObject.Spawn(true);
+        kitchenObjectNetworkObject.GetComponent<RecipeNote>().makeRecipeNoteClientRpc(waitingRecipeSOIndex);
+        SpawnNewWaitingRecipeClientRpc(waitingRecipeSOIndex);
     }
 
     [ClientRpc]
@@ -77,6 +88,7 @@ public class DeliveryManager : NetworkBehaviour
                 {
                     //player deliverd correct recipe
                     DeliverCorrectRecipeServerRpc(i);
+                    plateKitchenObject.DirtyPlateServerRpc();
                     return;
                 }
             }
@@ -86,6 +98,7 @@ public class DeliveryManager : NetworkBehaviour
         // no matches found
         // incorrect recipe
         DeliverIncorrectRecipeServerRpc();
+        plateKitchenObject.DirtyPlateServerRpc();
     }
 
     public void DeliverCup(CupKitchenObject cupKitchenObject)
@@ -107,6 +120,7 @@ public class DeliveryManager : NetworkBehaviour
                 {
                 //player deliverd correct recipe
                 DeliverCorrectRecipeServerRpc(i);
+                cupKitchenObject.ClearDrinksServerRpc();
                     return;
                 }
             
@@ -116,6 +130,7 @@ public class DeliveryManager : NetworkBehaviour
         // no matches found
         // incorrect recipe
         DeliverIncorrectRecipeServerRpc();
+        cupKitchenObject.ClearDrinksServerRpc();
     }
 
     [ServerRpc(RequireOwnership = false)]

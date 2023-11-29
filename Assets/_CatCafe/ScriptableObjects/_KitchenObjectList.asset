@@ -14,12 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kitchenObjectSOList:
   - {fileID: 11400000, guid: 4c1ae4b15a323db49b09d0cab4cf5ade, type: 2}
+  - {fileID: 11400000, guid: 7f78d83b738b6234aaf66ddda70a043d, type: 2}
+  - {fileID: 11400000, guid: 6f6e1f22585c2f043a7183bfa24d9faa, type: 2}
+  - {fileID: 11400000, guid: 3128abb2f2ab5e942bbb0978aec89f90, type: 2}
   - {fileID: 11400000, guid: d5c63cf10ad95144eba51dcfd032fb9d, type: 2}
   - {fileID: 11400000, guid: e144c1efa033d5f4d9d36e5895838562, type: 2}
-  - {fileID: 11400000, guid: 8ff7df4dfe31ab74bb8e0667003f8349, type: 2}
+  - {fileID: 11400000, guid: 35134216b99f6354b96e1ed254fed8c0, type: 2}
   - {fileID: 11400000, guid: c585191b719466f47a0233918a12326b, type: 2}
-  - {fileID: 11400000, guid: d23cb6e2dbb306a4fb2267ef85e030f5, type: 2}
-  - {fileID: 11400000, guid: b5d0facd74b4d334c8dc4b63befefc90, type: 2}
-  - {fileID: 11400000, guid: 7f78d83b738b6234aaf66ddda70a043d, type: 2}
   - {fileID: 11400000, guid: 179fba8c384923348977e777f1f26dfc, type: 2}
   - {fileID: 11400000, guid: 33c6c7fffb9310e46a31d84ad273ec4a, type: 2}
+  - {fileID: 11400000, guid: 8ff7df4dfe31ab74bb8e0667003f8349, type: 2}
+  - {fileID: 11400000, guid: d23cb6e2dbb306a4fb2267ef85e030f5, type: 2}
+  - {fileID: 11400000, guid: b5d0facd74b4d334c8dc4b63befefc90, type: 2}
+  - {fileID: 11400000, guid: 10f3021ffeb298242a973830c71eb554, type: 2}
+  - {fileID: 11400000, guid: 48766b8cd9dd6894990446e4b8714548, type: 2}

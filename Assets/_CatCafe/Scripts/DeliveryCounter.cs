@@ -5,6 +5,8 @@ using UnityEngine;
 public class DeliveryCounter : MonoBehaviour
 {
     [SerializeField] private Collider col;
+    [SerializeField] private Transform dishReturn;
+
     public void EnableCollider()
     {
         col.enabled = true;
@@ -18,12 +20,12 @@ public class DeliveryCounter : MonoBehaviour
         if (collision.gameObject.tag == "Plate")
         {
             DeliveryManager.Instance.DeliverPlate(collision.gameObject.GetComponent<PlateKitchenObject>());
-            Destroy(collision.gameObject);
+            collision.gameObject.transform.position = dishReturn.position;
         }
         if (collision.gameObject.tag == "Cup")
         {
             DeliveryManager.Instance.DeliverCup(collision.gameObject.GetComponent<CupKitchenObject>());
-            Destroy(collision.gameObject);
+            collision.gameObject.transform.position = dishReturn.position;
         }
     }
 

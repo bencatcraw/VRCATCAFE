@@ -12,6 +12,7 @@ public class PlateKitchenObject : KitchenObject
         public KitchenObjectSO kitchenObjectSO;
     }
     private List<KitchenObjectSO> kitchenObjectSOList;
+    [SerializeField] private KitchenObjectSO dirtyPlateSO;
     private void Awake()
     {
         kitchenObjectSOList = new List<KitchenObjectSO>();
@@ -62,12 +63,33 @@ public class PlateKitchenObject : KitchenObject
             {
                 collision.gameObject.GetComponent<Knife>().SetKitchenObjectSO(collision.gameObject.GetComponent<Knife>().defaultKitchenObjectSO);
                 collision.gameObject.GetComponentInChildren<KnifeCompleteVisual>().ClearSpread();
-                collision.gameObject.tag = "Untagged";
+                collision.gameObject.tag = "Knife";
             }
 
         }
     }
-
+    [ServerRpc(RequireOwnership = false)]
+    public void ClearIngredientsServerRpc()
+    {
+        ClearIngredientsClientRpc();
+    }
+    [ClientRpc]
+    private void ClearIngredientsClientRpc()
+    {
+        kitchenObjectSOList.Clear();
+        GetComponentInChildren<PlateCompleteVisual>().ClearPlateVisual();
+    }
+    [ServerRpc(RequireOwnership = false)]
+    public void DirtyPlateServerRpc()
+    {
+        DirtyPlateClientRpc();
+    }
+    [ClientRpc]
+    private void DirtyPlateClientRpc()
+    {
+        ClearIngredientsClientRpc();
+        TryAddIngredient(dirtyPlateSO);
+    }
     public List<KitchenObjectSO> GetKitchenObjectSOList()
     {
         return kitchenObjectSOList;

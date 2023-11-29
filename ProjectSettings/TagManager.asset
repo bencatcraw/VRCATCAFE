@@ -9,6 +9,8 @@ TagManager:
   - Plate
   - Spread
   - Cup
+  - Note
+  - Knife
   layers:
   - Default
   - TransparentFX

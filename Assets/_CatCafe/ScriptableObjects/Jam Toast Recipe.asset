@@ -16,3 +16,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7f78d83b738b6234aaf66ddda70a043d, type: 2}
   - {fileID: 11400000, guid: d5c63cf10ad95144eba51dcfd032fb9d, type: 2}
   recipeName: Jam Toast
+  recipeSOImage: {fileID: 2060891720, guid: 2b93e574fad002346a2ed629c3149190, type: 3}

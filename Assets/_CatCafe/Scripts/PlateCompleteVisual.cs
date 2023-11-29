@@ -32,4 +32,13 @@ public class PlateCompleteVisual : MonoBehaviour
             }
         }
     }
+
+    public void ClearPlateVisual()
+    {
+        foreach (Transform child in this.transform)
+        {
+            child.gameObject.SetActive(false);
+        }
+    }
+
 }

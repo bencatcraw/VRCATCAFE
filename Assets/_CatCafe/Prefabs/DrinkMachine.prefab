@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8616287529349081549}
   - component: {fileID: 2467035133110066048}
   - component: {fileID: 1949182452735034672}
+  - component: {fileID: 674980752622634820}
   m_Layer: 0
   m_Name: Coffee
   m_TagString: Untagged
@@ -69,6 +70,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kitchenObjectSO: {fileID: 11400000, guid: 33c6c7fffb9310e46a31d84ad273ec4a, type: 2}
   col: {fileID: 2467035133110066048}
+--- !u!114 &674980752622634820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936301167364050950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &1423538102748459034
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,6 +309,7 @@ GameObject:
   - component: {fileID: 6990524543682568012}
   - component: {fileID: 97135895043854276}
   - component: {fileID: 889442480549130944}
+  - component: {fileID: 3738956467345800706}
   m_Layer: 0
   m_Name: Tea
   m_TagString: Untagged
@@ -346,6 +368,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kitchenObjectSO: {fileID: 11400000, guid: 179fba8c384923348977e777f1f26dfc, type: 2}
   col: {fileID: 97135895043854276}
+--- !u!114 &3738956467345800706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3434744591126941460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &3563491859973295342
 GameObject:
   m_ObjectHideFlags: 0
@@ -10239,7 +10281,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 00aca62041974d040b76b7bc001053b2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

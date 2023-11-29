@@ -26,6 +26,18 @@ public class CupKitchenObject : KitchenObject
         SetKitchenObjectSO(kitchenObjectSO);
         this.GetComponentInChildren<MugCompleteVisual>().DrinkVisual(kitchenObjectSO);
     }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void ClearDrinksServerRpc()
+    {
+        ClearDrinksClientRpc();
+    }
+    [ClientRpc]
+    private void ClearDrinksClientRpc()
+    {
+        SetKitchenObjectSO(defaultKitchenObjectSO);
+        this.GetComponentInChildren<MugCompleteVisual>().ClearDrinks();
+    }
 }
 
 
