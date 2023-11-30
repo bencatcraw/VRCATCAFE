@@ -63,6 +63,7 @@ public class PlateKitchenObject : KitchenObject
             {
                 collision.gameObject.GetComponent<Knife>().SetKitchenObjectSO(collision.gameObject.GetComponent<Knife>().defaultKitchenObjectSO);
                 collision.gameObject.GetComponentInChildren<KnifeCompleteVisual>().ClearSpread();
+                collision.gameObject.GetComponent<AudioSource>().Play();
                 collision.gameObject.tag = "Knife";
             }
 

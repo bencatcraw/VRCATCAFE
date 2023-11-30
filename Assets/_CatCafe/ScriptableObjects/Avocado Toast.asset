@@ -16,4 +16,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7f78d83b738b6234aaf66ddda70a043d, type: 2}
   - {fileID: 11400000, guid: 3128abb2f2ab5e942bbb0978aec89f90, type: 2}
   recipeName: Avocado Toast
-  recipeSOImage: {fileID: 0}
+  recipeSOImage: {fileID: 1191951614, guid: 71520e9fc0d69b84e801489895826830, type: 3}

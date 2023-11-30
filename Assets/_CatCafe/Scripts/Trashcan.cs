@@ -5,14 +5,18 @@ using Unity.Netcode;
 
 public class Trashcan : NetworkBehaviour
 {
+    [SerializeField] private KitchenObjectSO[] trashableObjects;
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.GetComponent<KitchenObject>() != null)
+        foreach(KitchenObjectSO s in trashableObjects)
         {
+            if (collision.gameObject.GetComponent<KitchenObject>().GetKitchenObjectSO() == s)
+            {
                 collision.gameObject.GetComponent<NetworkObject>().Despawn();
                 Destroy(collision.gameObject);
-            
+            }
         }
+        
     }
 
     [ServerRpc(RequireOwnership = false)]

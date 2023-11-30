@@ -4,40 +4,21 @@ using UnityEngine;
 using Unity.Netcode;
 
 public class NetworkSpawnTest : NetworkBehaviour
-{
-    private GameObject FindNearestPlayer()
+{ 
+    public void GetPlayerId()
     {
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        GameObject nearestPlayer = null;
-        float minDistance = Mathf.Infinity;
-
-        foreach (GameObject player in players)
-        {
-            float distance = Vector3.Distance(transform.position, player.transform.position);
-            if (distance < minDistance)
-            {
-                minDistance = distance;
-                nearestPlayer = player;
-            }
-        }
-
-        return nearestPlayer;
+        changeownershipServerRpc(NetworkManager.LocalClientId);
     }
     [ServerRpc(RequireOwnership = false)]
-    public void changeownershipServerRpc()
+    public void changeownershipServerRpc(ulong playerId)
     {
-        GameObject player = FindNearestPlayer();
-
-        this.GetComponent<NetworkObject>().ChangeOwnership(player.GetComponent<NetworkObject>().OwnerClientId);
-        
+        this.GetComponent<NetworkObject>().ChangeOwnership(playerId);
     }
 
     [ServerRpc(RequireOwnership = false)]
     public void changeownershiptoserverServerRpc()
     {
-        this.GetComponent<NetworkObject>().ChangeOwnership(0);
+        this.GetComponent<NetworkObject>().RemoveOwnership();
 
     }
-
-
 }

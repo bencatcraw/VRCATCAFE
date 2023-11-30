@@ -22,6 +22,8 @@ namespace UnityEngine.XR.Content.Interaction
         private float filledSlots;
         private State state;
         public ToasterRecipeSO toastRecipeSO;
+        [SerializeField] private AudioSource toastDown;
+        [SerializeField] private AudioSource toastUp;
         [SerializeField]
         private List<GameObject> breadList;
         [SerializeField]
@@ -38,6 +40,7 @@ namespace UnityEngine.XR.Content.Interaction
                     else if (slider.value < 0.1 && filledSlots > 0)
                     {
                         state = State.Toasting;
+                        toastDown.Play();
                     }
                     else if (slider.value < 0.95) {
                         slider.value = Mathf.Lerp(slider.value, 1f, 0.1f);
@@ -48,6 +51,7 @@ namespace UnityEngine.XR.Content.Interaction
                     if (toastingTimer > toastRecipeSO.toastingTimeMax)
                     {
                         state = State.Toasted;
+                        toastUp.Play();
                         if (filledSlots >= 1)
                         {
                             breadList[0].gameObject.SetActive(false);

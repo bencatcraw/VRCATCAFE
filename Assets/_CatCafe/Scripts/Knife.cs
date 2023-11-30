@@ -35,6 +35,7 @@ public class Knife : KitchenObject
             if (TryAddSpread(collision.gameObject.GetComponent<KitchenObject>().GetKitchenObjectSO()))
             {
                 SetKitchenObjectSO(collision.gameObject.GetComponent<KitchenObject>().GetKitchenObjectSO());
+                GetComponent<AudioSource>().Play();
                 this.gameObject.tag = "Spread";
             }
 
