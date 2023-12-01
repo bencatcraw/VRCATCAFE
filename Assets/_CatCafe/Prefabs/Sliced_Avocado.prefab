@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 4800072940150138588}
   - component: {fileID: 3938095040556760965}
   - component: {fileID: 4102268429683213665}
-  - component: {fileID: 7913649267506795772}
   - component: {fileID: 5987902794198524050}
   - component: {fileID: 5736840941638714699}
   - component: {fileID: 7720915256704194819}
   - component: {fileID: -1034853989799772007}
+  - component: {fileID: 2745048296108434619}
   m_Layer: 0
   m_Name: Sliced_Avocado
   m_TagString: Ingredient
@@ -31,9 +31,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7502000277010170331}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.63139194, y: -0.31834584, z: -0.31834573, w: 0.6313922}
+  m_LocalRotation: {x: -0.6312824, y: -0.31828922, z: -0.31840035, w: 0.63150275}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 14.730067, y: 14.730067, z: 14.730067}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -88,27 +88,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7913649267506795772
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7502000277010170331}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.009172686, y: 0.013376457, z: 0.0025335134}
-  m_Center: {x: 0.0008116975, y: -0.00052359514, z: -0.0006250508}
 --- !u!114 &5987902794198524050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,3 +300,25 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+--- !u!64 &2745048296108434619
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7502000277010170331}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8037178682368465973, guid: e91746aa55e50ac4d9d96eb1e756c098, type: 3}

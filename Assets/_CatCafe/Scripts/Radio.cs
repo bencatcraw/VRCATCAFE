@@ -22,6 +22,7 @@ public class Radio : MonoBehaviour
         {
             i = 0;
         }
+        audioSource.Stop();
         audioSource.clip = audioClips[i];
         audioSource.Play();
     }

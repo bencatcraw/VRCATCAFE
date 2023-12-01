@@ -12,6 +12,8 @@ public class Knife : KitchenObject
         public KitchenObjectSO kitchenObjectSO;
     }
     private List<KitchenObjectSO> kitchenObjectSOList;
+    public AudioSource spreadAudio;
+    public AudioSource chopSound;
     private void Awake()
     {
         kitchenObjectSOList = new List<KitchenObjectSO>();
@@ -35,7 +37,7 @@ public class Knife : KitchenObject
             if (TryAddSpread(collision.gameObject.GetComponent<KitchenObject>().GetKitchenObjectSO()))
             {
                 SetKitchenObjectSO(collision.gameObject.GetComponent<KitchenObject>().GetKitchenObjectSO());
-                GetComponent<AudioSource>().Play();
+                spreadAudio.Play();
                 this.gameObject.tag = "Spread";
             }
 

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using Unity.VisualScripting;
+using TMPro;
 
 public class DeliveryManager : NetworkBehaviour
 {
@@ -10,10 +12,14 @@ public class DeliveryManager : NetworkBehaviour
     [SerializeField] private RecipeListSO recipeListSO;
     [SerializeField] private KitchenObjectSO note;
     [SerializeField] private Transform noteSpawn;
+    [SerializeField] private TextMeshProUGUI orderText;
+    [SerializeField] private TextMeshProUGUI moneyText;
     private List<RecipeSO> waitingRecipeSOList;
     private float spawnRecipeTimer = 4f;
     private float spawnRecipeTimerMax = 4f;
     private int waitingRecipesMax = 4;
+    private int ordersFulfilled = 0;
+    private int money = 0;
 
     private void Awake()
     {
@@ -144,6 +150,10 @@ public class DeliveryManager : NetworkBehaviour
     {
         Debug.Log("CORRECT " + waitingRecipeSoIndex);
         waitingRecipeSOList.RemoveAt(waitingRecipeSoIndex);
+        ordersFulfilled++;
+        money += 5;
+        updateStats();
+
     }
 
     [ServerRpc(RequireOwnership = false)]
@@ -156,6 +166,14 @@ public class DeliveryManager : NetworkBehaviour
     private void DeliverIncorrectRecipeClientRpc()
     {
         Debug.Log("Incorrect ");
+        money -= 10;
+        updateStats();
+    }
+
+    private void updateStats()
+    {
+        orderText.text = "Orders Fulfilled: " + ordersFulfilled.ToString();
+        moneyText.text = "Money: $" + money.ToString();
     }
 }
 
