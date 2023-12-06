@@ -14,7 +14,7 @@ public class GameManager : NetworkBehaviour
     private bool isLocalPlayerReady = false;
     private NetworkVariable<float> countdownToStartTimer = new NetworkVariable<float>(3f);
     private NetworkVariable<float> gamePlayingTimer = new NetworkVariable<float>(0f);
-    private float gamePlayingTimerMax = 10f;
+    private float gamePlayingTimerMax = 360f;
     private Dictionary<ulong, bool> playerReadyDictionary;
     [SerializeField] private GameObject movementObj;
     [SerializeField] private Transform XROrigin;
