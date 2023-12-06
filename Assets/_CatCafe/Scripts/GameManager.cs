@@ -14,11 +14,12 @@ public class GameManager : NetworkBehaviour
     private bool isLocalPlayerReady = false;
     private NetworkVariable<float> countdownToStartTimer = new NetworkVariable<float>(3f);
     private NetworkVariable<float> gamePlayingTimer = new NetworkVariable<float>(0f);
-    private float gamePlayingTimerMax = 360f;
+    private float gamePlayingTimerMax = 10f;
     private Dictionary<ulong, bool> playerReadyDictionary;
     [SerializeField] private GameObject movementObj;
     [SerializeField] private Transform XROrigin;
     [SerializeField] private Transform clientSpawn;
+    [SerializeField] private Transform gameOverScreen;
 
     private enum State
     {
@@ -61,6 +62,7 @@ public class GameManager : NetworkBehaviour
                 }
                 break;
             case State.GameOver:
+                EndGameClientRpc();
                 break;
         }
     }
@@ -73,6 +75,12 @@ public class GameManager : NetworkBehaviour
             XROrigin.position = clientSpawn.position;
         }
         
+    }
+    [ClientRpc]
+    private void EndGameClientRpc()
+    {
+        movementObj?.SetActive(false);
+        gameOverScreen.gameObject.SetActive(true);
     }
 
     public void readyLocalPlayer()
@@ -97,6 +105,11 @@ public class GameManager : NetworkBehaviour
     public float GetCountdownToStartTimer()
     {
         return countdownToStartTimer.Value;
+    }
+
+    public float GetGameTimer()
+    {
+        return gamePlayingTimer.Value;
     }
 
     [ServerRpc(RequireOwnership = false)]
