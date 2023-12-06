@@ -12,6 +12,7 @@ public class NetworkPlayer : NetworkBehaviour
 
     public Renderer[] meshToDisable;
 
+    [SerializeField] private GameObject[] playerHeads;
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
@@ -22,8 +23,17 @@ public class NetworkPlayer : NetworkBehaviour
                 item.enabled = false;
             }
         }
+        ChangePlayerHeadServerRpc();
     }
 
+    [ServerRpc(RequireOwnership = false)]
+    public void ChangePlayerHeadServerRpc()
+    {
+        if (!IsOwner) { 
+        playerHeads[0].SetActive(false);
+        playerHeads[1].SetActive(true);
+        }
+    }
 
     // Update is called once per frame
     void Update()

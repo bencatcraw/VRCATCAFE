@@ -44,6 +44,7 @@ public class GameManager : NetworkBehaviour
         switch (state.Value)
         {
             case State.WaitingToStart:
+                MoveServerClientRpc();
                 break;
             case State.CountdownToStart:
                 countdownToStartTimer.Value -= Time.deltaTime;
@@ -71,10 +72,15 @@ public class GameManager : NetworkBehaviour
     private void EnableMovementClientRpc()
     {
         movementObj.SetActive(true);
-        if (!IsHost) {
+        
+    }
+    [ClientRpc]
+    private void MoveServerClientRpc()
+    {
+        if (!IsHost)
+        {
             XROrigin.position = clientSpawn.position;
         }
-        
     }
     [ClientRpc]
     private void EndGameClientRpc()
