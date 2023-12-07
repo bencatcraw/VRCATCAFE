@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Unity.Netcode;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
@@ -46,5 +47,12 @@ public class NetworkConnection : MonoBehaviour
             allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData, allocation.HostConnectionData);
 
         NetworkManager.Singleton.StartClient();
+    }
+    public void startSingleplayer() { StartCoroutine(Singleplayer()); }
+    IEnumerator Singleplayer()
+    {
+        Host();
+        yield return new WaitForSeconds(3f);
+        NetworkManager.Singleton.SceneManager.LoadScene("Singleplayer", LoadSceneMode.Single);
     }
 }
